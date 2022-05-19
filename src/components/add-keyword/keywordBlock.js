@@ -19,7 +19,7 @@ const KeywordBlock = (props) => {
 
 
     return (
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap justify-center'>
 
             {displayKeywords}
 

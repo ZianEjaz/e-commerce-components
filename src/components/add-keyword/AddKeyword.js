@@ -4,31 +4,40 @@ import KeywordBlock from './keywordBlock'
 export class AddKeyword extends Component {
   state = {
     value: "",
-    keywordArray: [1, 2, 3, 5, 4, 6, 7, 8, 9, 10]
+    keywordArray: ["add", "your", "tags"],
+    errorMessage : undefined
   }
 
   addKeyword = (event) => {
-
-    if (event.charCode === 13) {
+    // check length is greater than 3
+    if (event.target.value.length < 3 && event.charCode === 13) {
       this.setState({
-
+        errorMessage: "Minimum 3 Chracters"
       })
-      this.state.keywordArray.push(event.target.value)
     }
-
+    else {
+      this.setState({ errorMessage: "" })
+      // checking enter key is pressed
+      if (event.charCode === 13) {
+        this.state.keywordArray.push(event.target.value)
+        this.setState({
+          value: "",
+        })
+      }
+    }
   }
 
+
+  // deleting keyword from state array
   handleDeletion = (keyword) => {
 
     const filteredArray = this.state.keywordArray.filter((item) => {
       return item !== keyword
     })
-    console.log(filteredArray)
     this.setState({
-      keywordArray : filteredArray
+      keywordArray: filteredArray
     })
   }
-
 
   render() {
 
@@ -36,11 +45,15 @@ export class AddKeyword extends Component {
       <div className='text-center p-5'>
         <input
           type="text"
-          className="border shadow p-3 "
+          className={`border shadow p-3`}
           placeholder='Add a keyword to add'
           onKeyPress={this.addKeyword}
-          disabled={this.state.keywordArray.length >= 24} />
-
+          disabled={this.state.keywordArray.length >= 24}
+          value={this.state.value}
+          onChange={(event) => this.setState({ value: event.target.value })} />
+        <div className='text-red-300'>
+          {this.state.errorMessage}
+        </div>
         <p
           className={`text-${this.state.keywordArray.length >= 24 ?
             "red-600" :
