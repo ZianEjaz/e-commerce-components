@@ -1,32 +1,52 @@
 import React, { Component } from 'react'
+import KeywordBlock from './keywordBlock'
 
 export class AddKeyword extends Component {
   state = {
-    keywordCounter : 0,
-    value : "",
-    aray : []
+    value: "",
+    keywordArray: [1, 2, 3, 5, 4, 6, 7, 8, 9, 10]
   }
 
-  addKeyword = (event)=>{
-   
-    if(event.charCode === 13){
-this.setState({
+  addKeyword = (event) => {
 
-    })
-    this.state.aray.push(event.target.value)
-    console.log(event.target.value)
+    if (event.charCode === 13) {
+      this.setState({
+
+      })
+      this.state.keywordArray.push(event.target.value)
     }
-    
+
+  }
+
+  handleDeletion = (keyword) => {
+
+    const filteredArray = this.state.keywordArray.filter((item) => {
+      return item !== keyword
+    })
+    console.log(filteredArray)
+    this.setState({
+      keywordArray : filteredArray
+    })
   }
 
 
   render() {
-    
+
     return (
       <div className='text-center p-5'>
-        <input type="text" className="border shadow p-3 " placeholder='Add a keyword to add' onKeyPress={this.addKeyword} disabled={this.state.aray.length >= 24}/>
-        <p className={`text-${this.state.aray.length >= 24 ? "red-600" : "black"}`}>{this.state.aray.length} / 24</p>
-{console.log( + 1)}
+        <input
+          type="text"
+          className="border shadow p-3 "
+          placeholder='Add a keyword to add'
+          onKeyPress={this.addKeyword}
+          disabled={this.state.keywordArray.length >= 24} />
+
+        <p
+          className={`text-${this.state.keywordArray.length >= 24 ?
+            "red-600" :
+            "black"}`}>{this.state.keywordArray.length} / 24
+        </p>
+        < KeywordBlock keywords={this.state.keywordArray} handleDeletion={this.handleDeletion} />
       </div>
     )
   }
