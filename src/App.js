@@ -10,7 +10,7 @@ import Footer from './components/footer';
 import Home from './components/home';
 import Users from './components/users/users';
 import RemoveSpaces from './components/remove-spaces/remove-spaces';
-import AddKeyword from './components/add-keyword/AddKeyword'
+import AddKeywordHome from './components/add-keyword/addKeywordHome'
 
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
     <Router>
       <Header />
       <Routes>
-      <Route path="/addkeyword" element={< AddKeyword />} />
+      <Route path="/addkeyword" element={< AddKeywordHome />} />
         <Route path="/removespaces" element={< RemoveSpaces />} />
         <Route path="/users" element={< Users />} />
         <Route index element={<Home />} />

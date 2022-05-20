@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import KeywordBlock from './keywordBlock'
+import KeywordArrayToBubbles from './keywordArrayToBubbles'
+
+
 
 export class AddKeyword extends Component {
   state = {
     value: "",
     keywordArray: ["add", "your", "tags"],
-    errorMessage : undefined
+    errorMessage: undefined,
+    maxKeywords: 24
   }
 
   addKeyword = (event) => {
@@ -39,27 +42,36 @@ export class AddKeyword extends Component {
     })
   }
 
+returnComponentValue = ()=>{
+  this.props.submitFunction(this.state.keywordArray)
+}
+
   render() {
 
     return (
-      <div className='text-center p-5'>
+      <div className='text-center mx-auto'>
+
         <input
           type="text"
-          className={`border shadow p-3`}
+          className={`border shadow p-3 ${this.state.keywordArray.length === this.state.maxKeywords ? "cursor-not-allowed" : null}`}
           placeholder='Add a keyword to add'
           onKeyPress={this.addKeyword}
-          disabled={this.state.keywordArray.length >= 24}
+          disabled={this.state.keywordArray.length === this.state.maxKeywords}
           value={this.state.value}
           onChange={(event) => this.setState({ value: event.target.value })} />
         <div className='text-red-300'>
           {this.state.errorMessage}
         </div>
         <p
-          className={`text-${this.state.keywordArray.length >= 24 ?
+          className={`text-${this.state.keywordArray.length >= this.state.maxKeywords ?
             "red-600" :
-            "black"}`}>{this.state.keywordArray.length} / 24
+            "black"}`}>{this.state.keywordArray.length} / {this.state.maxKeywords}
         </p>
-        < KeywordBlock keywords={this.state.keywordArray} handleDeletion={this.handleDeletion} />
+        < KeywordArrayToBubbles keywords={this.state.keywordArray} handleDeletion={this.handleDeletion} />
+        <div className='text-right'>
+          <button className='m-5 p-2 bg-gray-200 rounded-xl shadow' onClick={this.returnComponentValue}>Submit</button>
+        </div>
+
       </div>
     )
   }

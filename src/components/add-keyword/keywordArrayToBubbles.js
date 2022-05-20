@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineClose } from "react-icons/ai";
 
-const KeywordBlock = (props) => {
+const keywordArrayToBubbles = (props) => {
 
     
 
@@ -27,4 +27,4 @@ const KeywordBlock = (props) => {
     )
 }
 
-export default KeywordBlock
+export default keywordArrayToBubbles
