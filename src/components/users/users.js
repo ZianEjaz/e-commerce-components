@@ -11,14 +11,8 @@ export class Users extends Component {
     jsonFetch = () => {
         fetch('https://jsonplaceholder.typicode.com/users/')
             .then(response => response.json())
-            .then(json => this.setState({json}))
+            .then(json => this.setState({json}));
 }
-    jsonToUserBlock = this.state.json.map((item, index)=>{
-        return (
-            console.log(this.state.json.length, index)
-        )
-    })
-
     componentDidMount() {
         this.jsonFetch()
     }
@@ -26,7 +20,7 @@ export class Users extends Component {
     render() {
         return (
             <div>users
-                < UserBlock />
+                < UserBlock json = {this.state.json}/>
             </div>
         )
     }
