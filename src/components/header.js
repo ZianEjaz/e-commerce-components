@@ -19,7 +19,7 @@ const Header = () => {
             <a href="/addkeyword">Add Keyword</a>
           </li>
           <li className="p-2 border rounded m-2">
-            <a href="/addkeyword">Hooks</a>
+            <a href="/hooks">Hooks</a>
           </li>
         </ul>
         </div>
