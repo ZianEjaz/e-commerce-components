@@ -21,6 +21,9 @@ const Header = () => {
           <li className="p-2 border rounded m-2">
             <a href="/hooks">Hooks</a>
           </li>
+          <li className="p-2 border rounded m-2">
+            <a href="code-with-harry/text-utils">text-utils</a>
+          </li>
         </ul>
         </div>
       </nav>
